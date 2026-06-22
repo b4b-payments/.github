@@ -1,0 +1,5 @@
+{
+    "name": "Release Notes & Change Management",
+    "description": "Adds slash-command driven release notes generation, change-request tiering, and the release-approved merge gate. Calls the shared reusable workflow in b4b-payments/release-notes.",
+    "categories": ["Automation"]
+}
