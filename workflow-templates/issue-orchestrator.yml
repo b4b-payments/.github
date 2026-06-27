@@ -1,0 +1,36 @@
+# Issue Orchestrator Workflow
+#
+# This is a thin stub. All logic lives in the reusable workflow in the private
+# b4b-payments/issue-orchestrator repo, so updates there propagate to every
+# repo automatically. This file is identical in every adopting repo and should
+# rarely (if ever) need changing.
+#
+# It runs on a schedule: each run intakes new issues onto the project board and
+# drives each card through To Do -> Refinement -> Doing -> For Review -> Done.
+# A manual run (workflow_dispatch) is available for testing, with an optional
+# dry-run that logs intended actions without making changes.
+#
+name: Issue Orchestrator
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Log intended actions without making changes'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  orchestrate:
+    uses: b4b-payments/issue-orchestrator/.github/workflows/orchestrate-reusable.yml@main
+    secrets: inherit
+    with:
+      project_url: ${{ vars.IO_PROJECT_URL }}
+      dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}

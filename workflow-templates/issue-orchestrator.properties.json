@@ -1,0 +1,5 @@
+{
+    "name": "Issue Orchestrator",
+    "description": "Scheduled automation that intakes repo issues onto a project board, refines them through a question and answer loop in issue comments, implements approved issues with a headless coding agent, and opens a PR for review. Calls the shared reusable workflow in b4b-payments/issue-orchestrator.",
+    "categories": ["Automation"]
+}
