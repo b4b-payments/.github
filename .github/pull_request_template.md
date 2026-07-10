@@ -25,9 +25,10 @@
   declared tier. The automation reads these markers:
   - Tier 3: emergency/hotfix change. ANY change delivered as a hotfix straight
     to a deployment branch (e.g. production) is Tier 3, regardless of whether
-    it would otherwise be Tier 1 or Tier 2. A Jira CR is created for audit, but
-    the PR is not blocked on CR approval - use /hotfix-approve for emergency
-    sign-off. After deploying, back-merge the hotfix into every other branch
+    it would otherwise be Tier 1 or Tier 2. No Jira CR is created
+    automatically; the PR is not blocked on CR approval - use /hotfix-approve
+    for emergency sign-off (file one on demand with /create-cr if needed).
+    After deploying, back-merge the hotfix into every other branch
     (staging, main, sandbox, ...) via a PR per branch, running /back-merge on
     each.
   - Tier 2: a standalone Jira Change Request will be created automatically from
@@ -38,7 +39,7 @@
 
 - [ ] **TIER 1** - No PCI Impact Check boxes are ticked. I confirm this change does not affect any PCI-scoped security control.
 - [ ] **TIER 2** - One or more PCI Impact Check boxes below are ticked. A standalone Jira CR will be created automatically from this PR and linked here; this PR is blocked from merging until that CR is Approved.
-- [ ] **TIER 3** - Emergency/hotfix change. ANY change delivered as a hotfix (straight to a deployment branch such as production) is Tier 3, whatever its PCI impact. A Jira CR is created for audit, but merge is unblocked via `/hotfix-approve` (not CR approval). After deploying, back-merge into the other branches via a PR per branch (`/back-merge`).
+- [ ] **TIER 3** - Emergency/hotfix change. ANY change delivered as a hotfix (straight to a deployment branch such as production) is Tier 3, whatever its PCI impact. No Jira CR is created automatically; merge is unblocked via `/hotfix-approve` (not CR approval), and a CR can be filed for audit on demand with `/create-cr`. After deploying, back-merge into the other branches via a PR per branch (`/back-merge`).
 
 ## Related Tickets
 
